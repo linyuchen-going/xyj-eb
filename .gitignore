@@ -1,0 +1,5 @@
+node_modules/
+.idea/
+.vscode/
+build/
+.qiniu_pythonsdk_hostscache.json

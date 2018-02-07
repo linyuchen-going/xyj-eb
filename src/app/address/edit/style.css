@@ -1,0 +1,77 @@
+.bg{
+    background: #e6e6e6;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+.container{
+    padding: 1rem;
+    background: white
+}
+
+.items{
+    margin-top: 0.5rem;
+    border-bottom: 1px solid #9e9c9c;
+    overflow: hidden;
+    padding-bottom: 0.5rem;
+}
+
+.item input, .item textarea{
+    margin-top: 0.5rem;
+    border: none;
+    width: 100%;
+    height: 100%;
+    font-size: 1.2em;
+}
+
+.itemName, .itemMobile{
+    composes: item;
+    float: left;
+    width: 49%;
+}
+
+.itemMobile{
+    border-left: 1px solid #9e9c9c; 
+    padding-left: 1%; 
+}
+
+.itemProvince{
+    composes: item;
+    width: 32%;
+    float: left
+}
+
+.itemCity{
+    composes: itemProvince;
+    border-left: 1px solid #9e9c9c; 
+    padding-left: 1%; 
+
+}
+
+.itemArea{
+    composes: itemCity;
+}
+
+.itemDetail{
+    composes: item;
+}
+
+.btnSave{
+    border-radius: 0.2rem;
+    width: 100%;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    text-align: center;
+    background: #32e24f;
+    color: white;
+    margin-top: 1rem;
+}
+
+.btnCancel{
+    text-align: right;
+    padding-right: 0.5rem;
+    color: #8f8d8d;
+}

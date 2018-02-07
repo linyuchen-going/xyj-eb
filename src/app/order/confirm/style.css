@@ -1,0 +1,150 @@
+
+.confirm{
+    margin: 0 0.3rem;
+    font-size: 0.9em;
+}
+
+.addressContainer{
+    margin-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    overflow: hidden;
+    border-bottom: 1px solid #525050;
+}
+
+.iconPosition{
+    float: left;
+    width: 15%;
+    line-height: 3rem;
+    text-align: center;
+}
+.iconPosition img{
+    width: 65%;
+    margin-top: 10%;
+}
+
+.address{
+    width: 85%;
+    float: right;
+    height: 4rem;
+}
+
+.addressReceiver{
+    float: left;
+}
+
+.addressMobile{
+    float: right;
+    margin-right: 1rem;
+}
+
+.addressPerson{
+    overflow: hidden;   
+}
+.addressDetail{
+    margin-top: 0.5rem;
+}
+
+.order{
+    margin-top: 0.5rem;
+    padding: 0 1rem;
+}
+
+.orderItem{
+    overflow: hidden;
+}
+
+.product{
+    margin: 1rem 0;
+    overflow: hidden;
+    border-bottom: 1px dashed #8f8d8d;
+    padding-bottom: 1rem;
+}
+.productCover{
+    width: 30%; 
+    height: 9rem;
+    /* line-height: 9rem; */
+    float: left;
+}
+.productCover img{
+    width: 100%;
+}
+.productDetail{
+    margin-left: 0.5rem;
+    width: 65%;
+    float: right;
+}
+
+.productDetailItem{
+    overflow: hidden;
+}
+
+.productDetailName{
+    padding-bottom: 0.5rem;
+}
+
+.productNumTitle{
+    float: left;
+}
+
+.productNum{
+    float: right
+}
+
+.productPriceTitle{
+    float: left;
+}
+
+.productPrice{
+    float: right;
+    color: red;
+}
+
+.totalPaymentTitle{
+    float: left;
+}
+
+.totalPayment{
+    float: right;
+    color: red;
+}
+
+.inviteCodeTitle{
+    float: left;
+}
+
+.inviteCode{
+    float: right;
+    text-align: right;
+}
+
+.iconPayway{
+    width: 3rem;
+    height: 3rem;
+}
+.payway{
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0.5rem;
+}
+.paywayName{
+    line-height: 3rem;
+}
+.paywayLeft{
+    display: flex;
+}
+.paywayRight{
+    line-height: 3rem;
+}
+
+.btnPay{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background: #55e93e;
+    height: 2rem;
+    width: 100%;
+    line-height: 2rem;
+    font-size: 0.9em;
+    text-align: center;
+    color: white;
+}

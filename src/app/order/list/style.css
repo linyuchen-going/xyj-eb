@@ -1,0 +1,75 @@
+.container{
+
+}
+
+.item{
+    padding: 0.3rem;
+    border-bottom: 1px solid #9e9c9c;
+}
+
+.createTime{
+    font-size: 0.7em;
+    color: #9e9c9c;
+}
+
+
+.product{
+    display: flex;
+}
+
+.cover{
+
+}
+.cover img{
+    width: 4rem;
+    padding: 0.2rem;
+    margin-top: 1rem;
+}
+
+.productInfo{
+    padding: 0.2rem;
+}
+
+.name{
+
+}
+
+.priceContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.priceTitle{
+
+}
+
+.priceValue{
+    color: red;
+}
+
+
+.numContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.numTitle{
+
+}
+
+.numValue{
+
+}
+
+.statusContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.statusTitle{
+
+}
+
+.statusValue{
+    color: #39b739;
+}
