@@ -66,7 +66,7 @@ export default class ProductComponent extends React.Component<Props, State>{
     renderMoreList(): JSX.Element{
         let products = this.state.products.map((product: Product)=>{
             return (
-                <div className={STYLE.moreListProduct} key={product.id} onClick={()=>this.getProductData(product.id)}>
+                <div className={STYLE.moreListProduct} key={product.id} onClick={()=>{this.getProductData(product.id);scrollTo(0, 0)}}>
                     <div>
                         <img src={product.cover} />
                     </div>

@@ -9,8 +9,8 @@ import os
 
 QINIU_AK = "nIFi7iFDn4Q-6FNtN5gHIG1vc2ny7HoW1ZaheGT7"
 QINIU_SK = "dpw24sgleoBCeFrai4eXqMGoswp0p-lRHcq-z5fi"
-QINIU_BUCKET = "open"
-QINIU_HOST = "oua8rae54.bkt.clouddn.com"
+QINIU_BUCKET = "static"
+QINIU_HOST = "f.linyuchen.net"
 
 
 class QiniuTool(object):

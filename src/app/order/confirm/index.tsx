@@ -10,6 +10,7 @@ import * as OrderApi from "../../../api/order/index";
 import {OrderConfirmParam} from "../../router/urls";
 import * as RouterUrls from '../../router/urls'
 import LoginSmsComponent from '../../login'
+import FormPostComponent from 'lycfelib/react/formpost'
 
 let ICON_POSITION = require('./img/position.png');
 let ICON_ALIPAY = require("./img/alipay.png");
@@ -58,9 +59,10 @@ export default class OrderConfirm extends React.Component<Props, State>{
     }
 
     post(){
-        if(!this.state.inviteCode){
-            return alert("请先填入邀请码");
-        }
+        // if(!this.state.inviteCode){
+        //      return alert("请先填入邀请码");
+        // }
+        alert("订单提交成功，请等待付款");
         if (!this.state.address.id){
             return alert("请先填写收货人信息");
         }
@@ -135,13 +137,13 @@ export default class OrderConfirm extends React.Component<Props, State>{
                         </div>
                     </div>
 
-                    <div className={STYLE.orderItem}>
-                        <div className={STYLE.inviteCodeTitle}>邀请码</div>
-                        <input className={STYLE.inviteCode}
-                               onChange={(v)=>{this.setState({inviteCode: v.target.value})}}
-                               placeholder="在此填入邀请码"
-                        />
-                    </div>
+                    {/*<div className={STYLE.orderItem}>*/}
+                        {/*<div className={STYLE.inviteCodeTitle}>邀请码</div>*/}
+                        {/*<input className={STYLE.inviteCode}*/}
+                               {/*onChange={(v)=>{this.setState({inviteCode: v.target.value})}}*/}
+                               {/*placeholder="在此填入邀请码"*/}
+                        {/*/>*/}
+                    {/*</div>*/}
                     <div>
                         <div className={STYLE.totalPaymentTitle}>金额</div>
                         <div className={STYLE.totalPayment}>{product.price}元</div>
@@ -169,7 +171,10 @@ export default class OrderConfirm extends React.Component<Props, State>{
                         </div>
                     </div>
                 </div>
-                <div className={STYLE.btnPay} onClick={()=>{this.post()}}>付款</div>
+                <div className={STYLE.btnPay} onClick={()=>{this.post()}}>
+                    <FormPostComponent data={{"a": "a"}} url={"."}/>
+                    付款
+                </div>
             </div>
         )
     }
