@@ -11,3 +11,8 @@ export function apiLoginStatus(): Promise<ApiRes.ApiResLoginStatus> {
 export function apiLoginSms(query: ApiQuery.ApiQueryLoginSms): Promise<{}> {
     return requests.apiPost(ApiUrls.apiUrlLoginSms, query)
 }
+
+
+export function apiLoginTest(): Promise<any> {
+    return requests.apiGet(ApiUrls.apiUrlLoginTest)
+}

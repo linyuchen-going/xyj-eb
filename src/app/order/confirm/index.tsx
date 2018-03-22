@@ -7,9 +7,11 @@ import {ApiResAddress as Address} from "../../../api/user/address/response";
 import * as AddressApi from "../../../api/user/address/index";
 import * as ProductApi from "../../../api/product/index";
 import * as OrderApi from "../../../api/order/index";
+import {dinpayGateWayUrl} from "../../../api/pay/urls";
 import {OrderConfirmParam} from "../../router/urls";
 import * as RouterUrls from '../../router/urls'
 import LoginSmsComponent from '../../login'
+import FormPostComponent from 'lycfelib/react/formpost'
 
 let ICON_POSITION = require('./img/position.png');
 let ICON_ALIPAY = require("./img/alipay.png");
@@ -23,12 +25,15 @@ interface State{
     inviteCode: string;
     showAddressSelector: boolean;
     address: Address;
+    pay_way: string;
+    pay_data: any;
 }
 
 
 
 export default class OrderConfirm extends React.Component<Props, State>{
     private productId: number;
+    private payFormPost: FormPostComponent;
     constructor(p: Props){
         super(p);
         this.productId = p.match.params.productId;
@@ -54,6 +59,8 @@ export default class OrderConfirm extends React.Component<Props, State>{
                 name: "",
                 mobile: ""
             },
+            pay_way: "wxpub_pay",
+            pay_data: {}
         }
     }
 
@@ -67,9 +74,12 @@ export default class OrderConfirm extends React.Component<Props, State>{
         OrderApi.newProductOrder({
             address: this.state.address.id,
             product: this.productId,
-            invite_code: this.state.inviteCode
+            invite_code: this.state.inviteCode,
+            pay_way: this.state.pay_way
         }).then((res)=>{
-            RouterUrls.go(RouterUrls.orderConfirm(res.id));
+            // RouterUrls.go(RouterUrls.orderConfirm(res.id));
+            this.setState({pay_data: res.pay_data});
+            this.payFormPost.post();
         });
     }
 
@@ -156,7 +166,7 @@ export default class OrderConfirm extends React.Component<Props, State>{
                             </div>
                         </div>
                         <div className={STYLE.paywayRight}>
-                            <input type="radio" name="payway" checked={true}/>
+                            <input type="radio" name="payway" defaultChecked={true} onClick={()=>{this.setState({pay_way: "wxpub_pay"})}}/>
                         </div>
                     </div>
                     <div className={STYLE.payway}>
@@ -165,11 +175,12 @@ export default class OrderConfirm extends React.Component<Props, State>{
                             <div className={STYLE.paywayName}>支付宝支付</div>
                         </div>
                         <div className={STYLE.paywayRight}>
-                            <input type="radio" name="payway"/>
+                            <input type="radio" name="payway" onClick={()=>{this.setState({pay_way: "alipay_h5"})}}/>
                         </div>
                     </div>
                 </div>
                 <div className={STYLE.btnPay} onClick={()=>{this.post()}}>付款</div>
+                <FormPostComponent data={this.state.pay_data} url={dinpayGateWayUrl} ref={(component)=>{this.payFormPost=component}}/>
             </div>
         )
     }

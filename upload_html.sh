@@ -1,2 +1,2 @@
 
-scp build/*.html aly:~/web-app/static/eb/
+scp -r build/* aly:~/web-app/eb/static/fe

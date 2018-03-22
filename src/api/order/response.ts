@@ -33,4 +33,5 @@ export interface ApiResProductOrder{
 
 export interface ApiResNewProductOrderResult{
     id: number;
+    pay_data: any;
 }
