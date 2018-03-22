@@ -24,7 +24,7 @@ const config = {
     },
     output:{
         path: path.resolve(__dirname, "build"),
-        publicPath: (DEBUG ? "" : "http://oua8rae54.bkt.clouddn.com/xyj_eb/js/"),
+        publicPath: (DEBUG ? "" : "http://f.linyuchen.net/xyj_eb/js/"),
         filename: '[name]-[hash].js'
     },
     resolve: {
