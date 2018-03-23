@@ -9,6 +9,7 @@ import AddressSelectComponent from './address/select'
 import InviteCordsComponent from './invite-code'
 import * as RouterUrls from './router/urls'
 import LogoutComponent from "./logout/index";
+import LoginTestComponent from './login/test';
 
 
 let root = document.createElement("div");
@@ -26,6 +27,7 @@ ReactDOM.render((
             <Route path={RouterUrls.inviteCode} exact component={InviteCordsComponent}/>
 
             <Route path={RouterUrls.logout} exact component={LogoutComponent}/>
+            <Route path={RouterUrls.loginTest} exact component={LoginTestComponent}/>
 
         </Switch>
     </HashRouter>

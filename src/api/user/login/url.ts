@@ -7,3 +7,5 @@ export const apiUrlLoginStatus = `${loginPath}/status`;
 
 export const apiUrlLoginSms = `${loginPath}/sms`;
 
+export const apiUrlLoginTest = `${loginPath}/test`;
+

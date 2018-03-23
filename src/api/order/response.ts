@@ -1,5 +1,6 @@
 import {ApiResProductDetail} from "../product/response";
 import {ApiResAddress} from "../user/address/response";
+import * as WechatJsSdk from "lycfelib/wechat/jssdk";
 
 export interface PayOrder{
     id: number;
@@ -31,6 +32,8 @@ export interface ApiResProductOrder{
     num: number;
 }
 
+
 export interface ApiResNewProductOrderResult{
     id: number;
+    wechat_pay_data: WechatJsSdk.PayConfigData;
 }

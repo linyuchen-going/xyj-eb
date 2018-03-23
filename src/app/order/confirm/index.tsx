@@ -1,16 +1,18 @@
-import * as React from 'react'
-import * as ReactRouter from 'react-router-dom'
-import * as STYLE from './style.css'
-import {Product} from '../../product/detail'
-import AddressSelectorComponent, {} from '../../address/select'
+import * as React from 'react';
+import * as ReactRouter from 'react-router-dom';
+import * as STYLE from './style.css';
+import {Product} from '../../product/detail';
+import AddressSelectorComponent, {} from '../../address/select';
 import {ApiResAddress as Address} from "../../../api/user/address/response";
 import * as AddressApi from "../../../api/user/address/index";
 import * as ProductApi from "../../../api/product/index";
 import * as OrderApi from "../../../api/order/index";
+import {dinpayGateWayUrl} from "../../../api/pay/urls";
 import {OrderConfirmParam} from "../../router/urls";
-import * as RouterUrls from '../../router/urls'
-import LoginSmsComponent from '../../login'
-import FormPostComponent from 'lycfelib/react/formpost'
+import * as RouterUrls from '../../router/urls';
+import LoginSmsComponent from '../../login';
+import FormPostComponent from 'lycfelib/react/formpost';
+import WechatJsSdk from '../../wxjssdk';
 
 let ICON_POSITION = require('./img/position.png');
 let ICON_ALIPAY = require("./img/alipay.png");
@@ -24,12 +26,15 @@ interface State{
     inviteCode: string;
     showAddressSelector: boolean;
     address: Address;
+    pay_way: string;
+    pay_data: any;
 }
 
 
 
 export default class OrderConfirm extends React.Component<Props, State>{
     private productId: number;
+    private payFormPost: FormPostComponent;
     constructor(p: Props){
         super(p);
         this.productId = p.match.params.productId;
@@ -55,6 +60,8 @@ export default class OrderConfirm extends React.Component<Props, State>{
                 name: "",
                 mobile: ""
             },
+            pay_way: "wxpub_pay",
+            pay_data: {}
         }
     }
 
@@ -62,16 +69,22 @@ export default class OrderConfirm extends React.Component<Props, State>{
         // if(!this.state.inviteCode){
         //      return alert("请先填入邀请码");
         // }
-        alert("订单提交成功，请等待付款");
         if (!this.state.address.id){
             return alert("请先填写收货人信息");
         }
         OrderApi.newProductOrder({
             address: this.state.address.id,
             product: this.productId,
-            invite_code: this.state.inviteCode
+            invite_code: this.state.inviteCode,
+            pay_way: this.state.pay_way
         }).then((res)=>{
-            RouterUrls.go(RouterUrls.orderConfirm(res.id));
+            // RouterUrls.go(RouterUrls.orderConfirm(res.id));
+            this.setState({pay_data: res.wechat_pay_data});
+            // this.payFormPost.post();
+            res.wechat_pay_data.success = function (res: any) {
+                alert("支付成功");
+            };
+            WechatJsSdk.pay(res.wechat_pay_data);
         });
     }
 
@@ -158,23 +171,22 @@ export default class OrderConfirm extends React.Component<Props, State>{
                             </div>
                         </div>
                         <div className={STYLE.paywayRight}>
-                            <input type="radio" name="payway" checked={true}/>
+                            <input type="radio" name="payway" defaultChecked={true} onClick={()=>{this.setState({pay_way: "wxpub_pay"})}}/>
                         </div>
                     </div>
-                    <div className={STYLE.payway}>
-                        <div className={STYLE.paywayLeft}>
-                            <img className={STYLE.iconPayway} src={ICON_ALIPAY}/>
-                            <div className={STYLE.paywayName}>支付宝支付</div>
-                        </div>
-                        <div className={STYLE.paywayRight}>
-                            <input type="radio" name="payway"/>
-                        </div>
-                    </div>
+                    {/*<div className={STYLE.payway}>*/}
+                        {/*<div className={STYLE.paywayLeft}>*/}
+                            {/*<img className={STYLE.iconPayway} src={ICON_ALIPAY}/>*/}
+                            {/*<div className={STYLE.paywayName}>支付宝支付</div>*/}
+                        {/*</div>*/}
+                        {/*<div className={STYLE.paywayRight}>*/}
+                            {/*<input type="radio" name="payway" defaultChecked={true} onClick={()=>{this.setState({pay_way: "alipay_h5"})}}/>*/}
+                        {/*</div>*/}
+                    {/*</div>*/}
                 </div>
-                <div className={STYLE.btnPay} onClick={()=>{this.post()}}>
-                    <FormPostComponent data={{"a": "a"}} url={"."}/>
-                    付款
-                </div>
+                <div className={STYLE.btnPay} onClick={()=>{this.post()}}>付款</div>
+                <FormPostComponent data={this.state.pay_data} url={dinpayGateWayUrl} ref={(component)=>{this.payFormPost=component}}/>
+
             </div>
         )
     }

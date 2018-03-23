@@ -57,7 +57,7 @@ export default class ProductComponent extends React.Component<Props, State>{
                 });
                 if (!this.productId){
                     // this.getProductData(res.results[0].id);
-                    this.getProductData(2);
+                    this.getProductData(1);
                 }
             }
         )
